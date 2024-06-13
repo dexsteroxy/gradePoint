@@ -1,371 +1,12 @@
-
-// import Navbar from "@/components/Navbar";
-// import MagicButton from "@/components/ui/MagicButton";
-// import { TextGenerateEffect } from "@/components/ui/TexstGenerateEffect";
-// import { FaLocationArrow } from "react-icons/fa";
-
-
-// const Result = () => {
-//   return (
-//     <div className="bg-black-100 h-screen">
-//       <Navbar />
-//       <div className="bg-black-100 w-full justify-center items-center flex flex-col px-6">
-     
-//           <h1 className="text-center text-4xl font-normal mb-12 mt-16">
-//             Result Manager
-//           </h1>
-     
-
-//         <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-//           <TextGenerateEffect
-//             words="Welcome User"
-//             className="text-4xl font-bold p-6 md:p-0"
-//           />
-//           <div className="flex justify-center flex-col items-center">
-//             <input
-//               type="number"
-//               placeholder="Enter number of courses..."
-//               className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[400px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//               min="0"
-//             />
-
-//             <a href="#" className="mb-6 md:mb-0">
-//               <MagicButton
-//                 title="Enter"
-//                 icon={<FaLocationArrow />}
-//                 position="right"
-//               />
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Result;
-
-
-
-
-
-
-
-
-// "use client"
-// import React, { useState, ChangeEvent } from "react";
-// import Navbar from "@/components/Navbar";
-// import MagicButton from "@/components/ui/MagicButton";
-// import { TextGenerateEffect } from "@/components/ui/TexstGenerateEffect";
-// import { FaLocationArrow } from "react-icons/fa";
-
-// const Result: React.FC = () => {
-//   const [numInputs, setNumInputs] = useState<number>(0);
-//   const [inputValues, setInputValues] = useState<string[]>([]);
-//   const [showInputs, setShowInputs] = useState<boolean>(false);
-
-//   const handleNumInputsChange = (e: ChangeEvent<HTMLInputElement>): void => {
-//     const num = parseInt(e.target.value, 10);
-//     if (!isNaN(num) && num >= 0) {
-//       setNumInputs(num);
-//       setInputValues(Array(num).fill(""));
-//       setShowInputs(false); // Reset the showInputs flag
-//     } else {
-//       setNumInputs(0);
-//       setInputValues([]);
-//       setShowInputs(false); // Reset the showInputs flag
-//     }
-//   };
-
-//   const handleInputChange = (index: number, value: string): void => {
-//     const newValues = [...inputValues];
-//     newValues[index] = value;
-//     setInputValues(newValues);
-//   };
-
-//   const handleButtonClick = (): void => {
-//     setShowInputs(true);
-//   };
-
-//   return (
-//     <div className="bg-black-100 h-screen">
-//       <Navbar />
-//       <div className="bg-black-100 w-full justify-center items-center flex flex-col px-6">
-//         <h1 className="text-center text-4xl font-normal mb-12 mt-16">
-//           Result Manager
-//         </h1>
-
-//         <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-//           <TextGenerateEffect
-//             words="Welcome User"
-//             className="text-4xl font-bold p-6 md:p-0"
-//           />
-//           <div className="flex justify-center flex-col items-center">
-//             <input
-//               type="number"
-//               placeholder="Enter number of courses..."
-//               className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[400px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//               min="0"
-//               onChange={handleNumInputsChange}
-//             />
-
-//             <a href="#" className="mb-6 md:mb-0" onClick={handleButtonClick}>
-//               <MagicButton
-//                 title="Enter"
-//                 icon={<FaLocationArrow />}
-//                 position="right"
-//               />
-//             </a>
-
-//             {showInputs && Array.from({ length: numInputs }).map((_, index) => (
-//               <input
-//                 key={index}
-//                 type="text"
-//                 placeholder={`Course ${index + 1}`}
-//                 className="bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[400px] placeholder:text-gray-700 rounded-md placeholder:text-sm mt-2"
-//                 value={inputValues[index] || ""}
-//                 onChange={(e) => handleInputChange(index, e.target.value)}
-//               />
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Result;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client"
-// import React, { useState } from "react";
-// import Navbar from "@/components/Navbar";
-// import MagicButton from "@/components/ui/MagicButton";
-// import { TextGenerateEffect } from "@/components/ui/TexstGenerateEffect";
-// import { FaLocationArrow } from "react-icons/fa";
-
-// const Result = () => {
-//   const [numOfCourses, setNumOfCourses] = useState("");
-//   const [inputs, setInputs] = useState([]);
-//   const [submitted, setSubmitted] = useState(false);
-
-//   const handleNumOfCoursesChange = (e) => {
-//     setNumOfCourses(e.target.value);
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     const numberOfInputs = parseInt(numOfCourses, 10);
-//     if (!isNaN(numberOfInputs) && numberOfInputs > 0) {
-//       const newInputs = Array.from({ length: numberOfInputs }, () => ({ code: "", unit: "" }));
-//       setInputs(newInputs);
-//       setSubmitted(true);
-//     }
-//   };
-
-//   const handleCourseInputChange = (index, field, value) => {
-//     const newInputs = [...inputs];
-//     newInputs[index][field] = value;
-//     setInputs(newInputs);
-//   };
-
-//   return (
-//     <div className="bg-black-100 h-screen">
-//       <Navbar />
-//       <div className="bg-black-100 w-full justify-center items-center flex flex-col px-6">
-//         <div>
-//           <h1 className="text-center text-4xl font-normal mb-12 mt-16">
-//             Result Manager
-//           </h1>
-//         </div>
-//         {submitted ? (
-//           <div className="bg-black-200 mb-12 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-//             {inputs.map((input, index) => (
-//               <div key={index} className="flex flex-col md:flex-row md:items-center mb-4">
-//                 <input
-//                   type="text"
-//                   placeholder={`Enter Course Code`}
-//                   value={input.code}
-//                   className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//                   onChange={(e) => handleCourseInputChange(index, 'code', e.target.value)}
-//                 />
-//                 <input
-//                   type="number"
-//                   placeholder={`Enter Course Units`}
-//                   value={input.unit}
-//                   className="mt-2 mb-2 md:ml-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//                   onChange={(e) => handleCourseInputChange(index, 'unit', e.target.value)}
-//                 />
-//               </div>
-//             ))}
-//              <a href="#" className=" md:mb-0" >
-//                 <MagicButton title="Calculate" icon={<FaLocationArrow />} position="right" />
-//               </a>
-//           </div>
-//         ) : (
-//           <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-//             <TextGenerateEffect
-//               words="Welcome User"
-//               className="text-4xl font-bold p-6 md:p-0"
-//             />
-//             <div className="flex justify-center flex-col items-center">
-//               <input
-//                 type="number"
-//                 placeholder="Enter number of courses..."
-//                 className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[400px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//                 value={numOfCourses}
-//                 onChange={handleNumOfCoursesChange}
-//                 min="0"
-//               />
-//               <a href="#" className="mb-6 md:mb-0" onClick={handleSubmit}>
-//                 <MagicButton title="Submit" icon={<FaLocationArrow />} position="right" />
-//               </a>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Result;
-
-
-
-
-
-
-
-
-// "use client"
-// import React, { useState } from "react";
-// import Navbar from "@/components/Navbar";
-// import MagicButton from "@/components/ui/MagicButton";
-// import { TextGenerateEffect } from "@/components/ui/TexstGenerateEffect";
-// import { FaLocationArrow } from "react-icons/fa";
-
-// const Result = () => {
-//   const [numOfCourses, setNumOfCourses] = useState("");
-//   const [inputs, setInputs] = useState([]);
-//   const [submitted, setSubmitted] = useState(false);
-
-//   const handleNumOfCoursesChange = (e) => {
-//     setNumOfCourses(e.target.value);
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     const numberOfInputs = parseInt(numOfCourses, 10);
-//     if (!isNaN(numberOfInputs) && numberOfInputs > 0) {
-//       const newInputs = Array.from({ length: numberOfInputs }, () => ({ code: "", unit: "", grade: "" }));
-//       setInputs(newInputs);
-//       setSubmitted(true);
-//     }
-//   };
-
-//   const handleCourseInputChange = (index, field, value) => {
-//     const newInputs = [...inputs];
-//     newInputs[index][field] = value;
-//     setInputs(newInputs);
-//   };
-
-//   return (
-//     <div className="bg-black-100 h-screen">
-//       <Navbar />
-//       <div className="bg-black-100 w-full justify-center items-center flex flex-col px-6">
-//         <div>
-//           <h1 className="text-center text-4xl font-normal mb-12 mt-16">
-//             Result Manager
-//           </h1>
-//         </div>
-//         {submitted ? (
-//           <div className="bg-black-200 mb-6 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-//             {inputs.map((input, index) => (
-//               <div key={index} className="flex flex-col md:flex-row md:items-center mb-4">
-//                 <input
-//                   type="text"
-//                   placeholder="Enter Course Code"
-//                   value={input.code}
-//                   className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//                   onChange={(e) => handleCourseInputChange(index, 'code', e.target.value)}
-//                 />
-//                 <input
-//                   type="number"
-//                   placeholder="Enter Course Units"
-//                   value={input.unit}
-//                   className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//                   onChange={(e) => handleCourseInputChange(index, 'unit', e.target.value)}
-//                 />
-//                 <select
-//                   value={input.grade}
-//                   className="mt-2 mb-2 bg-gray-300 text-gray-800 outline-none border-none p-2 w-[80px] rounded-md"
-//                   onChange={(e) => handleCourseInputChange(index, 'grade', e.target.value)}
-//                 >
-//                   <option value="select">Select Grade</option>
-//                   <option value="A">A</option>
-//                   <option value="B">B</option>
-//                   <option value="C">C</option>
-//                   <option value="D">D</option>
-//                   <option value="E">E</option>
-//                   <option value="F">F</option>
-//                 </select>
-//               </div>
-//             ))}
-//               <a href="#" className=" md:mb-0" >
-//                 <MagicButton title="Calculate" icon={<FaLocationArrow />} position="right" />
-//               </a>
-//           </div>
-//         ) : (
-//           <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-//             <TextGenerateEffect
-//               words="Welcome User"
-//               className="text-4xl font-bold p-6 md:p-0"
-//             />
-//             <div className="flex justify-center flex-col items-center">
-//               <input
-//                 type="number"
-//                 placeholder="Enter number of courses..."
-//                 className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[400px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-//                 value={numOfCourses}
-//                 onChange={handleNumOfCoursesChange}
-//                 min="0"
-//               />
-//               <a href="#" className="mb-6 md:mb-0" onClick={handleSubmit}>
-//                 <MagicButton title="Submit" icon={<FaLocationArrow />} position="right" />
-//               </a>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Result;
-
-
-
-
-
-
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Navbar from "@/components/Navbar";
 import MagicButton from "@/components/ui/MagicButton";
 import { TextGenerateEffect } from "@/components/ui/TexstGenerateEffect";
 import { FaLocationArrow } from "react-icons/fa";
+import { IoIosHome } from "react-icons/io";
+import Link from "next/link";
+import { GrFormNextLink } from "react-icons/gr";
 
 interface CourseInput {
   code: string;
@@ -378,7 +19,10 @@ const Result: React.FC = () => {
   const [inputs, setInputs] = useState<CourseInput[]>([]);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [gradePoint, setGradePoint] = useState<string | null>(null);
-  const [calculationDetails, setCalculationDetails] = useState<CourseInput[]>([]);
+  const [calculationDetails, setCalculationDetails] = useState<CourseInput[]>(
+    []
+  );
+  const [error, setError] = useState<string>("");
 
   const handleNumOfCoursesChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNumOfCourses(e.target.value);
@@ -388,36 +32,62 @@ const Result: React.FC = () => {
     e.preventDefault();
     const numberOfInputs = parseInt(numOfCourses, 10);
     if (!isNaN(numberOfInputs) && numberOfInputs > 0) {
-      const newInputs = Array.from({ length: numberOfInputs }, () => ({ code: "", unit: "", grade: "" }));
+      const newInputs = Array.from({ length: numberOfInputs }, () => ({
+        code: "",
+        unit: "",
+        grade: "",
+      }));
       setInputs(newInputs);
       setSubmitted(true);
       setGradePoint(null); // Reset grade point when resubmitting
       setCalculationDetails([]); // Reset calculation details when resubmitting
+      setError(""); // Reset error message
     }
   };
 
-  const handleCourseInputChange = (index: number, field: keyof CourseInput, value: string) => {
+  const handleCourseInputChange = (
+    index: number,
+    field: keyof CourseInput,
+    value: string
+  ) => {
     const newInputs = [...inputs];
     newInputs[index][field] = value;
     setInputs(newInputs);
+
+    // Remove error message if all fields are filled
+    if (newInputs.every((input) => input.code && input.unit && input.grade)) {
+      setError("");
+    }
   };
 
   const gradeToPoint = (grade: string): number => {
     switch (grade) {
-      case "A": return 4.0;
-      case "B": return 3.0;
-      case "C": return 2.0;
-      case "D": return 1.0;
-      case "E": return 0.7;
-      case "F": return 0.0;
-      default: return 0.0;
+      case "A":
+        return 4.0;
+      case "B":
+        return 3.0;
+      case "C":
+        return 2.0;
+      case "D":
+        return 1.0;
+      case "E":
+        return 0.7;
+      case "F":
+        return 0.0;
+      default:
+        return 0.0;
     }
   };
 
   const calculateGradePoint = () => {
+    if (inputs.some((input) => !input.code || !input.unit || !input.grade)) {
+      setError("Please you have to fill up the input fields");
+      return;
+    }
+
     let totalPoints = 0;
     let totalUnits = 0;
-    const details = inputs.map(input => {
+    const details = inputs.map((input) => {
       const points = gradeToPoint(input.grade);
       const units = parseFloat(input.unit);
       const gradePoints = points * units;
@@ -427,7 +97,7 @@ const Result: React.FC = () => {
       }
       return {
         ...input,
-        gradePoints: gradePoints.toFixed(2)
+        gradePoints: gradePoints.toFixed(2),
       };
     });
 
@@ -439,70 +109,133 @@ const Result: React.FC = () => {
   return (
     <div className="bg-black-100 h-screen">
       <Navbar />
-      <div className="bg-black-100 w-full justify-center items-center flex flex-col px-6">
+      <div className="bg-black-100 w-full  flex flex-col px-6">
         <div>
-          <h1 className="text-center text-4xl font-normal mb-12 mt-16">
-            Result Manager
-          </h1>
+          <h1 className="text-4xl font-normal mb-12 mt-16">Result Manager</h1>
         </div>
         {submitted ? (
-          <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
-            {inputs.map((input, index) => (
-              <div key={index} className="flex flex-col md:flex-row md:items-center mb-4">
-                <input
-                  type="text"
-                  placeholder="Enter Course Code"
-                  value={input.code}
-                  className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-                  onChange={(e) => handleCourseInputChange(index, 'code', e.target.value)}
-                />
-                <input
-                  type="number"
-                  placeholder="Enter Course Units"
-                  value={input.unit}
-                  className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-                  onChange={(e) => handleCourseInputChange(index, 'unit', e.target.value)}
-                />
-                <select
-                  value={input.grade}
-                  className="mt-2 mb-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] rounded-md"
-                  onChange={(e) => handleCourseInputChange(index, 'grade', e.target.value)}
-                >
-                  <option value="" disabled>Select Grade</option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                  <option value="C">C</option>
-                  <option value="D">D</option>
-                  <option value="E">E</option>
-                  <option value="F">F</option>
-                </select>
-              </div>
-            ))}
-            <a href="#" className="mb-6 md:mb-0" onClick={calculateGradePoint}>
-              <MagicButton title="Calculate" icon={<FaLocationArrow />} position="right" />
-            </a>
-
+          <>
             {gradePoint !== null && (
-              <div className="mt-4 text-white text-xl">
+              <div className="mb-4 text-black-100 text-center font-bold  bg-green-500 p-3 rounded-md text-4xl">
                 Your Grade Point is: {gradePoint}
               </div>
             )}
-            {calculationDetails.length > 0 && (
-              <div className="mt-4 text-white">
-                <h2 className="text-lg font-semibold mb-2">Calculation Details:</h2>
-                {calculationDetails.map((detail, index) => (
-                  <div key={index} className="mb-2">
-                    <p>Course Code: {detail.code}</p>
-                    <p>Course Units: {detail.unit}</p>
-                    <p>Grade: {detail.grade}</p>
-                    <p>Grade Points: {detail.gradePoints}</p>
+            <div className="bg-black-200 mb-12 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col lg:w-fit md:px-32 md:h-fit md:p-12 p-2">
+              {inputs.map((input, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col md:flex-row md:items-center mb-4"
+                >
+                  <input
+                    type="text"
+                    placeholder="Enter Course Code"
+                    value={input.code}
+                    className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
+                    onChange={(e) =>
+                      handleCourseInputChange(index, "code", e.target.value)
+                    }
+                  />
+                  <input
+                    type="number"
+                    placeholder="Enter Course Units"
+                    value={input.unit}
+                    className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
+                    onChange={(e) =>
+                      handleCourseInputChange(index, "unit", e.target.value)
+                    }
+                  />
+                  <select
+                    value={input.grade}
+                    className="mt-2 mb-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] rounded-md"
+                    onChange={(e) =>
+                      handleCourseInputChange(index, "grade", e.target.value)
+                    }
+                  >
+                    <option value="" disabled>
+                      Select Grade
+                    </option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                  </select>
+                </div>
+              ))}
+              <Link
+                href="#"
+                className="mb-6 md:mb-0"
+                onClick={calculateGradePoint}
+              >
+                <MagicButton
+                  title="Calculate"
+                  icon={<FaLocationArrow />}
+                  position="right"
+                />
+              </Link>
+              {error && (
+                <div className="mt-4 bg-red-500 p-3 rounded-tl-3xl rounded-br-3xl text-sm font-medium">
+                  {error}
+                </div>
+              )}
+            </div>
+            <div>
+              {calculationDetails.length > 0 && (
+                <>
+                  <div className=" md:-mt-12 flex justify-between">
+                    <Link href="/">
+                      <MagicButton
+                        title="Cancel"
+                        icon={<IoIosHome />}
+                        position="right"
+                        otherClasses=""
+                      />
+                    </Link>
+                    <Link href="/grade">
+                      <MagicButton
+                        title="Proceed to save"
+                        icon={<GrFormNextLink />}
+                        position="right"
+                      />
+                    </Link>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
+                  <div className="mt-12 md:mt-32 text-white">
+                    <h2 className="text-4xl font-bold mb-2">
+                      Calculation Details:
+                    </h2>
+                    <div className=" bg-black-200 shadow-md mb-6 p-4 grid  md:grid-cols-3 lg:grid-cols-4 md:items-center md:justify-center md:gap-6">
+                      {calculationDetails.map((detail, index) => (
+                        <div key={index} className="mb-2 flex flex-col">
+                          <p className=" flex">
+                            Course Code:{" "}
+                            <p className=" ml-2 capitalize text-purple">
+                              {detail.code}
+                            </p>{" "}
+                          </p>
+                          <p className=" flex">
+                            Course Units:{" "}
+                            <p className=" ml-2 capitalize text-purple">
+                              {" "}
+                              {detail.unit}
+                            </p>
+                          </p>
+                          <p className=" flex">
+                            Grade:{" "}
+                            <p className=" ml-2 capitalize text-purple">
+                              {detail.grade}
+                            </p>{" "}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </>
         ) : (
-          <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:w-fit md:px-32 md:h-fit md:p-12 p-2">
+          <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col  md:h-fit md:p-12 p-2">
             <TextGenerateEffect
               words="Welcome User"
               className="text-4xl font-bold p-6 md:p-0"
@@ -511,13 +244,17 @@ const Result: React.FC = () => {
               <input
                 type="number"
                 placeholder="Enter number of courses..."
-                className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[400px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
+                className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 sm:w-[400px] w-[200px] md:w-[600px] lg:w-[800px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
                 value={numOfCourses}
                 onChange={handleNumOfCoursesChange}
                 min="0"
               />
               <a href="#" className="mb-6 md:mb-0" onClick={handleSubmit}>
-                <MagicButton title="Submit" icon={<FaLocationArrow />} position="right" />
+                <MagicButton
+                  title="Submit"
+                  icon={<FaLocationArrow />}
+                  position="right"
+                />
               </a>
             </div>
           </div>
@@ -528,3 +265,14 @@ const Result: React.FC = () => {
 };
 
 export default Result;
+
+
+
+
+
+
+
+
+
+
+

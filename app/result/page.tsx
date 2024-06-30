@@ -7,7 +7,8 @@ import { FaLocationArrow } from "react-icons/fa";
 import { IoIosHome } from "react-icons/io";
 import Link from "next/link";
 import { GrFormNextLink } from "react-icons/gr";
-
+import StarsCanvas from "@/components/ui/StarBackground";
+import { motion } from "framer-motion";
 interface CourseInput {
   code: string;
   unit: string;
@@ -107,172 +108,178 @@ const Result: React.FC = () => {
   };
 
   return (
-    <div className="bg-black-100 h-screen">
-      <Navbar />
-      <div className="bg-black-100 w-full  flex flex-col px-6">
-        <div>
-          <h1 className="text-4xl font-normal mb-12 mt-16">Result Manager</h1>
-        </div>
-        {submitted ? (
-          <>
+    <div>
+      <StarsCanvas />
+      <div className="bg-black-100 h-screen z-30">
+        <Navbar />
+
+        <div className="bg-black-100 w-full  flex flex-col px-6">
+          <div>
+            <div>
+              <h1 className="md:text-4xl text-3xl font-normal mb-7 md:mt-32 mt-24">
+                Result Managment <span className=" text-purple">System</span>
+              </h1>
+            </div>
+
             {gradePoint !== null && (
+              <motion.div
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+
+              className="mb-4 text-black-100 text-center  font-bold  bg-[#35a68d] text-xl p-3 rounded-md md:text-4xl">
+                Your Grade Point is: {gradePoint}
+              </motion.div>
+            )}
+          </div>
+          {submitted ? (
+            <>
+              {/* {gradePoint !== null && (
               <div className="mb-4 text-black-100 text-center font-bold  bg-green-500 p-3 rounded-md text-4xl">
                 Your Grade Point is: {gradePoint}
               </div>
-            )}
-            <div className="bg-black-200 mb-12 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col lg:w-fit md:px-32 md:h-fit md:p-12 p-2">
-              {inputs.map((input, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col md:flex-row md:items-center mb-4"
-                >
-                  <input
-                    type="text"
-                    placeholder="Enter Course Code"
-                    value={input.code}
-                    className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-                    onChange={(e) =>
-                      handleCourseInputChange(index, "code", e.target.value)
-                    }
-                  />
-                  <input
-                    type="number"
-                    placeholder="Enter Course Units"
-                    value={input.unit}
-                    className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-                    onChange={(e) =>
-                      handleCourseInputChange(index, "unit", e.target.value)
-                    }
-                  />
-                  <select
-                    value={input.grade}
-                    className="mt-2 mb-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] rounded-md"
-                    onChange={(e) =>
-                      handleCourseInputChange(index, "grade", e.target.value)
-                    }
+            )} */}
+              <div className="bg-black-200 mb-12 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col z-30 lg:w-fit md:px-32 md:h-fit md:p-12 p-2">
+                {inputs.map((input, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col md:flex-row md:items-center mb-4"
                   >
-                    <option value="" disabled>
-                      Select Grade
-                    </option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                  </select>
-                </div>
-              ))}
-              <Link
-                href="#"
-                className="mb-6 md:mb-0"
-                onClick={calculateGradePoint}
-              >
-                <MagicButton
-                  title="Calculate"
-                  icon={<FaLocationArrow />}
-                  position="right"
-                />
-              </Link>
-              {error && (
-                <div className="mt-4 bg-red-500 p-3 rounded-tl-3xl rounded-br-3xl text-sm font-medium">
-                  {error}
-                </div>
-              )}
-            </div>
-            <div>
-              {calculationDetails.length > 0 && (
-                <>
-                  <div className=" md:-mt-12 flex justify-between">
-                    <Link href="/">
-                      <MagicButton
-                        title="Cancel"
-                        icon={<IoIosHome />}
-                        position="right"
-                        otherClasses=""
-                      />
-                    </Link>
-                    <Link href="/grade">
-                      <MagicButton
-                        title="Proceed to save"
-                        icon={<GrFormNextLink />}
-                        position="right"
-                      />
-                    </Link>
+                    <input
+                      type="text"
+                      placeholder="Enter Course Code"
+                      value={input.code}
+                      className="mt-2 z-50 mb-2 md:mr-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
+                      onChange={(e) =>
+                        handleCourseInputChange(index, "code", e.target.value)
+                      }
+                    />
+                    <input
+                      type="number"
+                      placeholder="Enter Course Units"
+                      value={input.unit}
+                      className="mt-2 mb-2 md:mr-2 bg-gray-300 text-gray-800 z-30 outline-none border-none p-2 md:w-[200px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
+                      onChange={(e) =>
+                        handleCourseInputChange(index, "unit", e.target.value)
+                      }
+                    />
+                    <select
+                      value={input.grade}
+                      className="mt-2 mb-2 bg-gray-300 text-gray-800 outline-none border-none p-2 md:w-[200px] rounded-md"
+                      onChange={(e) =>
+                        handleCourseInputChange(index, "grade", e.target.value)
+                      }
+                    >
+                      <option value="" disabled>
+                        Select Grade
+                      </option>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E">E</option>
+                      <option value="F">F</option>
+                    </select>
                   </div>
-                  <div className="mt-12 md:mt-32 text-white">
-                    <h2 className="text-4xl font-bold mb-2">
-                      Calculation Details:
-                    </h2>
-                    <div className=" bg-black-200 shadow-md mb-6 p-4 grid  md:grid-cols-3 lg:grid-cols-4 md:items-center md:justify-center md:gap-6">
-                      {calculationDetails.map((detail, index) => (
-                        <div key={index} className="mb-2 flex flex-col">
-                          <p className=" flex">
-                            Course Code:{" "}
-                            <p className=" ml-2 capitalize text-purple">
-                              {detail.code}
-                            </p>{" "}
-                          </p>
-                          <p className=" flex">
-                            Course Units:{" "}
-                            <p className=" ml-2 capitalize text-purple">
-                              {" "}
-                              {detail.unit}
-                            </p>
-                          </p>
-                          <p className=" flex">
-                            Grade:{" "}
-                            <p className=" ml-2 capitalize text-purple">
-                              {detail.grade}
-                            </p>{" "}
-                          </p>
-                        </div>
-                      ))}
+                ))}
+                <Link
+                  href="#"
+                  className="mb-6 md:mb-0"
+                  onClick={calculateGradePoint}
+                >
+                  <MagicButton
+                    title="Calculate"
+                    icon={<FaLocationArrow />}
+                    position="right"
+                  />
+                </Link>
+                {error && (
+                  <div className="mt-4 bg-red-500 p-3 rounded-tl-3xl rounded-br-3xl text-sm font-medium">
+                    {error}
+                  </div>
+                )}
+              </div>
+              <div>
+                {calculationDetails.length > 0 && (
+                  <>
+                    <div className=" md:-mt-12 flex justify-between">
+                      .
+                      <Link href="/semester">
+                        <MagicButton
+                          title="Proceed to save"
+                          icon={<GrFormNextLink />}
+                          position="right"
+                        />
+                      </Link>
                     </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </>
-        ) : (
-          <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col  md:h-fit md:p-12 p-2">
-            <TextGenerateEffect
-              words="Welcome User"
-              className="text-4xl font-bold p-6 md:p-0"
-            />
-            <div className="flex justify-center flex-col items-center">
-              <input
-                type="number"
-                placeholder="Enter number of courses..."
-                className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 sm:w-[400px] w-[200px] md:w-[600px] lg:w-[800px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
-                value={numOfCourses}
-                onChange={handleNumOfCoursesChange}
-                min="0"
+                    <div className=" mt-12 text-white">
+                      <h2 className="md:text-4xl text-2xl font-bold mb-2">
+                        Calculation Details:
+                      </h2>
+                      <div className="shadow-md mb-6 md:p-4 grid sm:grid-cols-3 md:grid-cols-3 gap-2 gap-x-2 lg:grid-cols-4 md:items-center md:justify-center md:gap-4">
+                        {calculationDetails.map((detail, index) => (
+                          <div key={index} className="mb-2 flex flex-col">
+                            <p className=" flex">
+                              Course Code:{" "}
+                              <p className=" ml-2 capitalize text-purple">
+                                {detail.code}
+                              </p>{" "}
+                            </p>
+                            <p className=" flex">
+                              Course Units:{" "}
+                              <p className=" ml-2 capitalize text-purple">
+                                {" "}
+                                {detail.unit}
+                              </p>
+                            </p>
+                            <p className=" flex">
+                              Grade:{" "}
+                              <p className=" ml-2 capitalize text-purple">
+                                {detail.grade}
+                              </p>{" "}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col  md:h-fit md:p-12 p-2">
+              <TextGenerateEffect
+                words="Welcome User"
+                className="text-4xl font-bold p-6 md:p-0"
               />
-              <a href="#" className="mb-6 md:mb-0" onClick={handleSubmit}>
-                <MagicButton
-                  title="Submit"
-                  icon={<FaLocationArrow />}
-                  position="right"
+              <div className="flex justify-center flex-col items-center z-30">
+                <p className=" font-semibold justify-start text-center flex items-start md:mb-0 -mt-6 md:-mt-0 mb-4">
+                  {" "}
+                  Please Kindly Enter the Total Number of Courses you are
+                  offering
+                </p>
+                <input
+                  type="number"
+                  placeholder="Enter number of courses..."
+                  className="md:mt-8 mb-6 md:mb-0 bg-gray-300 text-gray-800 outline-none border-none p-2 sm:w-[400px] w-[200px] md:w-[600px] lg:w-[800px] placeholder:text-gray-700 rounded-md placeholder:text-sm"
+                  value={numOfCourses}
+                  onChange={handleNumOfCoursesChange}
+                  min="0"
                 />
-              </a>
+                <a href="#" className="mb-6 md:mb-0" onClick={handleSubmit}>
+                  <MagicButton
+                    title="Submit"
+                    icon={<FaLocationArrow />}
+                    position="right"
+                  />
+                </a>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
 export default Result;
-
-
-
-
-
-
-
-
-
-
-

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className=" relative bg-black-100 h-screen flex 
      justify-center items-center flex-col 
-        mx-auto px-5 overflow-clip ">
+        mx-auto md:px-5 overflow-clip ">
       <div className=" max-w-7xl w-full">
         <FloatingNav navItems={navItems} />
       

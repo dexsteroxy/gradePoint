@@ -106,7 +106,11 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/utils/cn";
-
+import logo from '../../assets/logoo.png'
+import Image from "next/image";
+import Navbar from "../Navbar";
+import { socialMedia } from "@/data";
+import { RiMenu2Fill } from "react-icons/ri";
 export const FloatingNav = ({
   navItems,
   className,
@@ -121,18 +125,26 @@ export const FloatingNav = ({
  
 
   return (
-    <div className=" relative flex container ">
+    <div className="  ">
 
     
     <AnimatePresence mode="wait">
-      <div className= "  fixed z-[5000] top-1 md:top-0 flex-1 flex justify-center inset-x-0 px-5 py-5  border-b shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] space-x-8"
+      <div className= "  fixed z-[5000] top-1 md:top-0 flex-1 flex md:justify-center justify-between inset-x-0 px-3 md:px-5 py-5  border-b shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:space-x-8"
        
        style={{
                   backdropFilter: "blur(18px) saturate(180%)",
                   backgroundColor: "rgba(17, 25, 40, 0.75)",
                  
               }}
+              
       >
+        <div className=" xl:pr-32 flex items-center justify-center">
+        <div className=" bg-white-100 rounded-md flex justify-center items-center ">
+       <Image src={logo} alt="" />
+       </div>
+        </div>
+       
+       
         {navItems.map((navItem: any, idx: number) => (
           <Link
             key={`link=${idx}`}
@@ -148,14 +160,30 @@ export const FloatingNav = ({
           </Link>
 
         ))}
+        <div className=" md:hidden inline-flex">
+        <RiMenu2Fill className=" text-3xl" />
+        </div>
       
         {/* remove this login btn */}
         {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
           <span>Login</span>
           <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
         </button> */}
+        <div className=" md:flex gap-4 flex-row hidden justify-center items-center xl:pl-32 lg:pl-20 ">
+        {socialMedia.map((info) => (
+          <div
+            key={info.id}
+            className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
+          >
+            <img src={info.img} alt="icons" width={20} height={20} />
+          </div>
+        ))}
+        </div>
       </div>
+      
     </AnimatePresence>
     </div>
+
+   
   );
 };

@@ -6,7 +6,7 @@ import { FaLocationArrow } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <div className="  pt-20">
+    <div className="  md:pt-20">
       <div>
         <Spotlight
           className=" -top-40 -left-10 md:-left-32 md:-top-20 
@@ -37,15 +37,15 @@ const Hero = () => {
         />
       </div>
 
-      <div className=" flex justify-center relative my-20 z-10">
-        <div className=" max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
+      <div className=" flex justify-center relative md:my-20 z-10">
+        <div className=" max-w-[9 md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
           <h2 className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
             created by: amadi sixtus tochukwu
           </h2>
 
           <TextGenerateEffect
             words="Grade Point (GP) Tracking Mangement System"
-            className="text-center text-[30px] md:text-5xl lg:text-6xl"
+            className="text-center text-[35px] mb-4 md:mb-0 md:text-5xl lg:text-6xl"
           />
 
 

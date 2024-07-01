@@ -232,7 +232,7 @@ export function Save() {
             </div>
 
             {error && (
-              <div className="text-red-500 mb-4 font-semibold">
+              <div className="text-red-500 mb-4 text-sm md:text-base font-semibold">
                 {error}
               </div>
             )}

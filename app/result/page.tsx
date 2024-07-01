@@ -250,10 +250,10 @@ const Result: React.FC = () => {
             <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col  md:h-fit md:p-12 p-2">
               <TextGenerateEffect
                 words="Welcome User"
-                className="text-4xl font-bold p-6 md:p-0"
+                className="md:text-4xl text-2xl font-bold p-6 md:p-0"
               />
               <div className="flex justify-center flex-col items-center z-30">
-                <p className=" font-semibold justify-start text-center flex items-start md:mb-0 -mt-6 md:-mt-0 mb-4">
+                <p className=" font-semibold text-sm md:text-base justify-start text-center flex items-start md:mb-0 -mt-6 md:-mt-0 mb-4">
                   {" "}
                   Please Kindly Enter the Total Number of Courses you are
                   offering

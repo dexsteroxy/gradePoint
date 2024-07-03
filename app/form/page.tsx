@@ -1,9 +1,13 @@
+import Navbar from "@/components/Navbar";
 import { SignupFormDemo } from "@/components/ui/Form";
 import StarsCanvas from "@/components/ui/StarBackground";
 import React from "react";
 
 const Saving = () => {
   return (
+    <div>
+
+<Navbar />
     <main
       className=" relative bg-black-100 min-h-screen flex 
      justify-center items-center flex-col 
@@ -14,6 +18,7 @@ const Saving = () => {
      <SignupFormDemo />
      </div>
     </main>
+    </div>
   );
 };
 

@@ -175,13 +175,13 @@ export function Save() {
         />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="mx-2 md:mx-0 overflow-clip">
+      <div className="mx-2 md:mx-0 overflow-clip shadow-md shadow-slate-500 md:shadow-transparent">
         <div className="max-w-md md:max-w-lg w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-slate-500 shadow-md bg-black-200">
           <h2 className="font-bold text-xl mb-4 text-center ">
             Welcome
           </h2>
 
-          <form className="" onSubmit={handleSubmit}>
+          <form className=" " onSubmit={handleSubmit}>
             <div className="flex flex-col space-y-2 mb-4">
               <LabelInputContainer>
                 <select

@@ -13,7 +13,7 @@ import StarsCanvas from "@/components/ui/StarBackground";
 
 const Testimonials = () => {
   return (
-    <section>
+    <section className=" ">
 
   
     <section id="testimonials" className=" overflow-x-hidden">

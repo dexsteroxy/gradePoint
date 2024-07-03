@@ -299,7 +299,7 @@ export function Login() {
         />
         <Spotlight className="top-28 left-80 md:-top-20 md:left-96 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="mx-2 md:mx-0 overflow-clip">
+      <div className="mx-2 md:mx-0 overflow-clip shadow-md mt-12 shadow-slate-500 sm:shadow-transparent">
         <div className="max-w-md md:max-w-lg w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-slate-500 shadow-md bg-black-200">
           <h2 className="font-bold text-xl text-center mb-2 text-neutral-200">
             Login
@@ -366,7 +366,7 @@ export function Login() {
               <Link href={"/form"} className="text-blue-300 underline">
                 Sign-up
               </Link>{" "}
-              here
+              
             </p>
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
             <div className="flex flex-col space-y-4">

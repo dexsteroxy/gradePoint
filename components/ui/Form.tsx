@@ -511,7 +511,7 @@ export function SignupFormDemo() {
         />
         <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
-      <div className="mx-2 md:mx-0 overflow-clip">
+      <div className="mx-2 md:mx-0 overflow-clip mt-12 md:mt-32 mb-4 shadow-md shadow-slate-500 sm:shadow-transparent">
         <div className="max-w-md md:max-w-lg w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-slate-500 shadow-lg bg-white dark:bg-black-200">
           <h2 className="font-bold text-xl mb-4 text-center text-neutral-800 dark:text-neutral-200">
             Sign-up

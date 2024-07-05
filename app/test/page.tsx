@@ -1,11 +1,6 @@
 
-
-
-
 "use client";
-
 import React from "react";
-
 import { companies, testimonials } from "@/data";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 import Navbar from "@/components/Navbar";
@@ -14,23 +9,17 @@ import StarsCanvas from "@/components/ui/StarBackground";
 const Testimonials = () => {
   return (
     <section className=" ">
-
-  
     <section id="testimonials" className=" overflow-x-hidden">
-      
       <Navbar />
-    
-      <h1 className="heading mt-28">
+      <h1 className="heading mt-28 md:mt-36  flex items-center justify-center">
         Kind words from
-        <span className="text-purple"> satisfied Students</span>
+        <span className="text-purple ml-2"> satisfied Students</span>
       </h1>
-
       <div className="flex flex-col items-center max-lg:mt-10">
         <div
           // remove bg-white dark:bg-black dark:bg-grid-white/[0.05], h-[40rem] to 30rem , md:h-[30rem] are for the responsive design
           className="h-[80vh] -mt-28 md:-mt-0 md:h-[30rem] w-fit rounded-md flex flex-col antialiased  items-center justify-center relative overflow-hidden"
         >
-          
           <InfiniteMovingCards
           
             items={testimonials}
@@ -65,5 +54,4 @@ const Testimonials = () => {
     </section>
   );
 };
-
 export default Testimonials;

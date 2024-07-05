@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-import "./globals.css";
-import { ThemeProvider } from "./Provider";
-import firebaseConfig from "./services/config";
-
-const inter = Inter({ subsets: ["latin"] });
+// app/layout.tsx
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import ClientLayout from '@/components/ClientLayout'; // Import the new ClientLayout component
+// import { PersistGate } from 'redux-persist/integration/react';
+// import { store, persistor } from '@/redux/store';
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Result Tracker",
-  description: "This site helps you to calculate your Grade Point (GP)",
+  title: 'Result Tracker',
+  description: 'This site helps you to calculate your Grade Point (GP)',
 };
 
 export default function RootLayout({
@@ -23,14 +23,10 @@ export default function RootLayout({
         <link rel="icon" href="/jsm-logo.png" sizes="any" />
       </head>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ClientLayout>
+          
           {children}
-        </ThemeProvider>
+        </ClientLayout>
       </body>
     </html>
   );

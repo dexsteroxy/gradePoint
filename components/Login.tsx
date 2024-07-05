@@ -52,7 +52,7 @@
 //   setLoading(false)
 //   setSuccessMsg("Logged Succesfully! Welcome")
 //   setTimeout(() =>{
-//     router.push("/semester")
+//     router.push("/dashboard")
 //   }, 2000)
 // } catch (error) {
 //   console.error(e);
@@ -210,31 +210,50 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//2
+
+
 "use client";
 import React, { useState } from "react";
 import { Label } from "./ui/Label";
-import { Input } from "postcss";
 import { cn } from "@/utils/cn";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-} from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { Spotlight } from "./ui/Spotlight";
 import Link from "next/link";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '@/app/firebase/config';
 import { useRouter } from "next/navigation";
 import { LuLoader } from "react-icons/lu";
+import { useDispatch } from 'react-redux';
+import { setUser } from '@/redux/slices/authSlice'; // Import the setUser action
 
 export function Login() {
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
   const [errEmail, setErrEmail] = useState("");
+
   const [errPassword, setErrPassword] = useState("");
   const [firebaseError, setFirebaseError] = useState("");
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch(); // Initialize useDispatch hook
 
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
@@ -250,17 +269,22 @@ export function Login() {
     setFirebaseError("");
   };
 
+ 
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     setErrEmail("");
     setErrPassword("");
+   
     setSuccessMsg("");
     setFirebaseError("");
 
     if (!email) {
       setErrEmail("Enter your email");
     } 
+
+  
 
     if (!password) {
       setErrPassword("Enter your password");
@@ -270,11 +294,18 @@ export function Login() {
       try {
         setLoading(true);
         const res = await signInWithEmailAndPassword(email, password);
-        console.log({ res });
 
         if (res.user) {
           setLoading(false);
           setSuccessMsg("Logged in successfully! Welcome");
+
+
+          // Fetch user profile
+          const userName = res.user.displayName || "User"; // Use displayName if available
+   const department = res.user.email || "department"
+
+          dispatch(setUser({ userName, department,  email: res.user.email })); // Update the Redux store with user data
+
           setTimeout(() => {
             router.push("/dashboard");
           }, 2000);
@@ -338,6 +369,9 @@ export function Login() {
                 </p>
               )}
             </LabelInputContainer>
+
+
+        
             <button
               className="bg-gradient-to-br relative group/btn from-zinc-900 to-zinc-900  justify-center bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] text-center items-center flex"
               onClick={handleLogin}
@@ -366,7 +400,6 @@ export function Login() {
               <Link href={"/form"} className="text-blue-300 underline">
                 Sign-up
               </Link>{" "}
-              
             </p>
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
             <div className="flex flex-col space-y-4">
@@ -414,3 +447,10 @@ const LabelInputContainer = ({ children, className }: { children: React.ReactNod
     </div>
   );
 };
+
+
+
+
+
+
+

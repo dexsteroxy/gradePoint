@@ -1,18 +1,22 @@
+
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Navbar from "@/components/Navbar";
 import MagicButton from "@/components/ui/MagicButton";
 import { TextGenerateEffect } from "@/components/ui/TexstGenerateEffect";
 import { FaLocationArrow } from "react-icons/fa";
-import { IoIosHome } from "react-icons/io";
-import Link from "next/link";
 import { GrFormNextLink } from "react-icons/gr";
+import Link from "next/link";
 import StarsCanvas from "@/components/ui/StarBackground";
 import { motion } from "framer-motion";
+import { useDispatch } from 'react-redux';
+import { setGradePointAndDetails } from '@/redux/slices/calculationSlice';
+
 interface CourseInput {
   code: string;
   unit: string;
   grade: string;
+  gradePoints?: string;  // Optional field
 }
 
 const Result: React.FC = () => {
@@ -20,10 +24,10 @@ const Result: React.FC = () => {
   const [inputs, setInputs] = useState<CourseInput[]>([]);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [gradePoint, setGradePoint] = useState<string | null>(null);
-  const [calculationDetails, setCalculationDetails] = useState<CourseInput[]>(
-    []
-  );
+  const [calculationDetails, setCalculationDetails] = useState<CourseInput[]>([]);
   const [error, setError] = useState<string>("");
+
+  const dispatch = useDispatch();
 
   const handleNumOfCoursesChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNumOfCourses(e.target.value);
@@ -82,7 +86,7 @@ const Result: React.FC = () => {
 
   const calculateGradePoint = () => {
     if (inputs.some((input) => !input.code || !input.unit || !input.grade)) {
-      setError("Please you have to fill up the input fields");
+      setError("Please fill up all the input fields.");
       return;
     }
 
@@ -105,6 +109,9 @@ const Result: React.FC = () => {
     const gp = totalUnits > 0 ? (totalPoints / totalUnits).toFixed(2) : "0.00";
     setGradePoint(gp);
     setCalculationDetails(details);
+
+    // Dispatch the grade point and details to the Redux store
+    dispatch(setGradePointAndDetails({ gradePoint: gp, calculationDetails: details }));
   };
 
   return (
@@ -113,32 +120,26 @@ const Result: React.FC = () => {
       <div className="bg-black-100 h-screen z-30">
         <Navbar />
 
-        <div className="bg-black-100 w-full  flex flex-col px-6">
+        <div className="bg-black-100 w-full flex flex-col px-6">
           <div>
-            <div>
-              <h1 className="md:text-4xl text-3xl font-normal mb-7 md:mt-32 mt-24">
-                Result Managment <span className=" text-purple">System</span>
-              </h1>
-            </div>
+            <h1 className="md:text-4xl text-3xl font-normal mb-7 md:mt-32 mt-24">
+              Result Management <span className="text-purple">System</span>
+            </h1>
 
             {gradePoint !== null && (
               <motion.div
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-
-              className="mb-4 text-black-100 text-center  font-bold  bg-[#35a68d] text-xl p-3 rounded-md md:text-4xl">
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="mb-4 text-black-100 text-center font-bold bg-[#35a68d] text-xl p-3 rounded-md md:text-4xl"
+              >
                 Your Grade Point is: {gradePoint}
               </motion.div>
             )}
           </div>
+
           {submitted ? (
             <>
-              {/* {gradePoint !== null && (
-              <div className="mb-4 text-black-100 text-center font-bold  bg-green-500 p-3 rounded-md text-4xl">
-                Your Grade Point is: {gradePoint}
-              </div>
-            )} */}
               <div className="bg-black-200 mb-12 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col z-30 lg:w-fit md:px-32 md:h-fit md:p-12 p-2">
                 {inputs.map((input, index) => (
                   <div
@@ -182,8 +183,8 @@ const Result: React.FC = () => {
                     </select>
                   </div>
                 ))}
-                <Link
-                  href="#"
+                <button
+                  type="button"
                   className="mb-6 md:mb-0"
                   onClick={calculateGradePoint}
                 >
@@ -192,7 +193,7 @@ const Result: React.FC = () => {
                     icon={<FaLocationArrow />}
                     position="right"
                   />
-                </Link>
+                </button>
                 {error && (
                   <div className="mt-4 bg-red-500 p-3 rounded-tl-3xl rounded-br-3xl text-sm font-medium">
                     {error}
@@ -202,8 +203,7 @@ const Result: React.FC = () => {
               <div>
                 {calculationDetails.length > 0 && (
                   <>
-                    <div className=" md:-mt-12 flex justify-between">
-                      .
+                    <div className="md:-mt-12 flex justify-between">
                       <Link href="/semester">
                         <MagicButton
                           title="Proceed to save"
@@ -212,31 +212,30 @@ const Result: React.FC = () => {
                         />
                       </Link>
                     </div>
-                    <div className=" mt-12 text-white">
+                    <div className="mt-12 text-white">
                       <h2 className="md:text-4xl text-2xl font-bold mb-2">
                         Calculation Details:
                       </h2>
                       <div className="shadow-md mb-6 md:p-4 grid sm:grid-cols-3 md:grid-cols-3 gap-2 gap-x-2 lg:grid-cols-4 md:items-center md:justify-center md:gap-4">
                         {calculationDetails.map((detail, index) => (
                           <div key={index} className="mb-2 flex flex-col">
-                            <p className=" flex">
+                            <p className="flex">
                               Course Code:{" "}
-                              <p className=" ml-2 capitalize text-purple">
+                              <span className="ml-2 capitalize text-purple">
                                 {detail.code}
-                              </p>{" "}
+                              </span>
                             </p>
-                            <p className=" flex">
+                            <p className="flex">
                               Course Units:{" "}
-                              <p className=" ml-2 capitalize text-purple">
-                                {" "}
+                              <span className="ml-2 capitalize text-purple">
                                 {detail.unit}
-                              </p>
+                              </span>
                             </p>
-                            <p className=" flex">
+                            <p className="flex">
                               Grade:{" "}
-                              <p className=" ml-2 capitalize text-purple">
+                              <span className="ml-2 capitalize text-purple">
                                 {detail.grade}
-                              </p>{" "}
+                              </span>
                             </p>
                           </div>
                         ))}
@@ -247,14 +246,13 @@ const Result: React.FC = () => {
               </div>
             </>
           ) : (
-            <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col  md:h-fit md:p-12 p-2">
+            <div className="bg-black-200 items-center container justify-center shadow-lg shadow-gray-500 rounded-lg flex flex-col md:h-fit md:p-12 p-2">
               <TextGenerateEffect
                 words="Welcome User"
                 className="md:text-4xl text-2xl font-bold p-6 md:p-0"
               />
               <div className="flex justify-center flex-col items-center z-30">
-                <p className=" font-semibold text-sm md:text-base justify-start text-center flex items-start md:mb-0 -mt-6 md:-mt-0 mb-4">
-                  {" "}
+                <p className="font-semibold text-sm md:text-base justify-start text-center flex items-start md:mb-0 -mt-6 md:-mt-0 mb-4">
                   Please Kindly Enter the Total Number of Courses you are
                   offering
                 </p>
@@ -266,13 +264,17 @@ const Result: React.FC = () => {
                   onChange={handleNumOfCoursesChange}
                   min="0"
                 />
-                <a href="#" className="mb-6 md:mb-0" onClick={handleSubmit}>
+                <button
+                  type="button"
+                  className="mb-6 md:mb-0"
+                  onClick={handleSubmit}
+                >
                   <MagicButton
                     title="Submit"
                     icon={<FaLocationArrow />}
                     position="right"
                   />
-                </a>
+                </button>
               </div>
             </div>
           )}
@@ -283,3 +285,174 @@ const Result: React.FC = () => {
 };
 
 export default Result;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

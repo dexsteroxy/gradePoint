@@ -7,14 +7,19 @@ import Image from "next/image";
 import { RiMenu2Fill } from "react-icons/ri";
 const Navbar = () => {
   return (
+    <div className=" relative">
+
+    
     <div
-      className=" flex z-50 fixed justify-between w-full p-4 items-center md:px-12 border-b shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]  "
+      className="  flex z-50 fixed justify-between w-full p-4 items-center md:px-12 border-b shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]  "
       style={{
         backdropFilter: "blur(18px) saturate(180%)",
         backgroundColor: "rgba(17, 25, 40, 0.75)",
       }}
     >
-      <div className=" bg-white p-1 rounded-md shadow-md">
+
+      
+      <div className=" bg-gray-400 rounded-md shadow-md">
         <Image src={logo} alt="logo" />
       </div>
       <div className=" hidden md:flex gap-8 cursor-pointer">
@@ -31,6 +36,10 @@ const Navbar = () => {
         ))}
       </div>
 
+
+
+
+
       <div className="md:flex items-center md:gap-3 gap-6 hidden">
         {socialMedia.map((info) => (
           <div
@@ -42,6 +51,11 @@ const Navbar = () => {
         ))}
       </div>
       <RiMenu2Fill className=" text-3xl block md:hidden" />
+
+    
+    </div>
+   
+
     </div>
   );
 };

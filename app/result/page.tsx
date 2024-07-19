@@ -183,8 +183,8 @@ const Result: React.FC = () => {
                     </select>
                   </div>
                 ))}
-                <button
-                  type="button"
+                <div
+                  // type="button"
                   className="mb-6 md:mb-0"
                   onClick={calculateGradePoint}
                 >
@@ -193,7 +193,7 @@ const Result: React.FC = () => {
                     icon={<FaLocationArrow />}
                     position="right"
                   />
-                </button>
+                </div>
                 {error && (
                   <div className="mt-4 bg-red-500 p-3 rounded-tl-3xl rounded-br-3xl text-sm font-medium">
                     {error}
@@ -264,8 +264,8 @@ const Result: React.FC = () => {
                   onChange={handleNumOfCoursesChange}
                   min="0"
                 />
-                <button
-                  type="button"
+                <div
+                  // type="button"
                   className="mb-6 md:mb-0"
                   onClick={handleSubmit}
                 >
@@ -274,7 +274,7 @@ const Result: React.FC = () => {
                     icon={<FaLocationArrow />}
                     position="right"
                   />
-                </button>
+                </div>
               </div>
             </div>
           )}
@@ -285,6 +285,29 @@ const Result: React.FC = () => {
 };
 
 export default Result;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,3 +1,7 @@
+
+
+
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CourseInput {
@@ -13,8 +17,8 @@ interface CalculationState {
 }
 
 const initialState: CalculationState = {
-  gradePoint: null,
-  calculationDetails: [],
+  gradePoint: localStorage.getItem('gradePoint') || null,  // Load from localStorage
+  calculationDetails: JSON.parse(localStorage.getItem('calculationDetails') || '[]'),  // Load from localStorage
 };
 
 const calculationSlice = createSlice({
@@ -27,12 +31,25 @@ const calculationSlice = createSlice({
     ) => {
       state.gradePoint = action.payload.gradePoint;
       state.calculationDetails = action.payload.calculationDetails;
+
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('gradePoint', state.gradePoint);
+        localStorage.setItem('calculationDetails', JSON.stringify(state.calculationDetails));
+      }
+    },
+    clearCalculation: (state) => {
+      state.gradePoint = null;
+      state.calculationDetails = [];
+
+      // Clear from localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('gradePoint');
+        localStorage.removeItem('calculationDetails');
+      }
     },
   },
 });
 
-export const { setGradePointAndDetails } = calculationSlice.actions;
+export const { setGradePointAndDetails, clearCalculation } = calculationSlice.actions;
 export default calculationSlice.reducer;
-
-
-

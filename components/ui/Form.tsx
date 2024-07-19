@@ -182,6 +182,7 @@ export function SignupFormDemo() {
                   className="p-2 border-[1px] rounded-md outline-none"
                   onChange={handleName}
                 />
+                
                 {errClientName && (
                   <p className="text-xs text-red-500 font-semibold tracking-wide flex items-center gap-2 -mt-1.5">
                     <span className="italic font-extrabold text-base">!</span>

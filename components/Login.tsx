@@ -56,17 +56,16 @@
 //   }, 2000)
 // } catch (error) {
 //   console.error(e);
- 
-  
+
 // }
 
 //     if (!email) {
 //       setErrEmail("Enter your email");
-//     } 
+//     }
 
 //     if (!password) {
 //       setErrPassword("Enter your password");
-    
+
 //     }
 
 //     if (email && password) {
@@ -74,15 +73,14 @@
 //       setEmail("")
 //       setPassword("")
 //     }
-    
+
 //   }
 
- 
 //   return (
 //     <>
 //       <div className=" overflow-clip ">
 //         <Spotlight
-//           className=" -top-40 -left-10 md:-left-32 md:-top-20 
+//           className=" -top-40 -left-10 md:-left-32 md:-top-20
 //               h-screen"
 //           fill="purple"
 //         />
@@ -137,7 +135,7 @@
 //             <Link
 //               href={"/semester"}
 //               className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 justify-center dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] text-center items-center flex"
-             
+
 //               onClick={handleLogin}
 //             >
 //               Login &rarr;
@@ -173,7 +171,7 @@
 //                 </span>
 //                 <BottomGradient />
 //               </button>
-         
+
 //             </div>
 //           </form>
 //         </div>
@@ -205,28 +203,7 @@
 //   );
 // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //2
-
 
 "use client";
 import React, { useState } from "react";
@@ -235,12 +212,12 @@ import { cn } from "@/utils/cn";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { Spotlight } from "./ui/Spotlight";
 import Link from "next/link";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { auth } from '@/app/firebase/config';
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 import { LuLoader } from "react-icons/lu";
-import { useDispatch } from 'react-redux';
-import { setUser } from '@/redux/slices/authSlice'; // Import the setUser action
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/slices/authSlice"; // Import the setUser action
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -269,22 +246,18 @@ export function Login() {
     setFirebaseError("");
   };
 
- 
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
     setErrEmail("");
     setErrPassword("");
-   
+
     setSuccessMsg("");
     setFirebaseError("");
 
     if (!email) {
       setErrEmail("Enter your email");
-    } 
-
-  
+    }
 
     if (!password) {
       setErrPassword("Enter your password");
@@ -299,12 +272,11 @@ export function Login() {
           setLoading(false);
           setSuccessMsg("Logged in successfully! Welcome");
 
-
           // Fetch user profile
           const userName = res.user.displayName || "User"; // Use displayName if available
-   const department = res.user.email || "department"
+          const department = res.user.email || "department";
 
-          dispatch(setUser({ userName, department,  email: res.user.email })); // Update the Redux store with user data
+          dispatch(setUser({ userName, department, email: res.user.email })); // Update the Redux store with user data
 
           setTimeout(() => {
             router.push("/dashboard");
@@ -328,7 +300,10 @@ export function Login() {
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
           fill="purple"
         />
-        <Spotlight className="top-28 left-80 md:-top-20 md:left-96 h-[80vh] w-[50vw]" fill="blue" />
+        <Spotlight
+          className="top-28 left-80 md:-top-20 md:left-96 h-[80vh] w-[50vw]"
+          fill="blue"
+        />
       </div>
       <div className="mx-2 md:mx-0 overflow-clip shadow-md mt-12 shadow-slate-500 sm:shadow-transparent">
         <div className="max-w-md md:max-w-lg w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-6 shadow-slate-500 shadow-md bg-black-200">
@@ -370,8 +345,6 @@ export function Login() {
               )}
             </LabelInputContainer>
 
-
-        
             <button
               className="bg-gradient-to-br relative group/btn from-zinc-900 to-zinc-900  justify-center bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] text-center items-center flex"
               onClick={handleLogin}
@@ -381,7 +354,9 @@ export function Login() {
             </button>
             {loading && (
               <div className="flex items-center justify-center mt-4">
-                <span className="animate-spin text-green-600 text-4xl"><LuLoader /></span>
+                <span className="animate-spin text-green-600 text-4xl">
+                  <LuLoader />
+                </span>
               </div>
             )}
             {successMsg && (
@@ -440,17 +415,16 @@ const BottomGradient = () => {
   );
 };
 
-const LabelInputContainer = ({ children, className }: { children: React.ReactNode; className?: string; }) => {
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
     <div className={cn("flex flex-col space-y-2 w-full", className)}>
       {children}
     </div>
   );
 };
-
-
-
-
-
-
-

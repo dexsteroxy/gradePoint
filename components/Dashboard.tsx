@@ -1,24 +1,39 @@
 
 "use client";
 import React, { useState } from "react";
-import soma from "../assets/soma.jpg";
+import soma from "../assets/edit.png";
 import Image from "next/image";
 import MagicButton from "./ui/MagicButton";
 import { FaLocationArrow } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { RootState } from "@/redux/store";
 import { useFormContext } from "./FormContext";
+import { setGradePointAndDetails, clearCalculation } from '@/redux/slices/calculationSlice';
+import { clearUser } from '@/redux/slices/authSlice';
 
-const Board: React.FC = () => {
+const Dashboard: React.FC = () => {
   const [showDetails, setShowDetails] = useState(false);
-  // Access the gradePoint and calculationDetails from Redux state
   const { gradePoint, calculationDetails } = useSelector(
     (state: RootState) => state.calculation
   );
-
   const user = useSelector((state: RootState) => state.auth.user);
-  const { formData } = useFormContext();
+  const { formData, saveFormData } = useFormContext();
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    // Clear form data
+    saveFormData({ level: '', semester: '', year: '' });
+    
+    // Clear grade point and calculation details from Redux state
+    dispatch(clearCalculation());
+
+    // Clear user from Redux state (if needed)
+    // dispatch(clearUser());
+
+    // Clear formData from localStorage
+    localStorage.removeItem('formData');
+  };
 
   return (
     <div className="pt-28">
@@ -38,7 +53,7 @@ const Board: React.FC = () => {
         </div>
         <div className="md:w-[70%] h-72 bg-black-200 rounded-md shadow-sm shadow-white-100 flex flex-col items-center justify-center">
           <h2 className="uppercase font-bold tracking-wide text-center text-2xl">
-            Grade Point Score Board
+            Grade Point Score Board For
           </h2>
 
           {user ? (
@@ -128,7 +143,10 @@ const Board: React.FC = () => {
                 <td className="p-3 date text-sm text-white-100">
                   {formData.year}
                 </td>
-                <td className="p-3 delete text-sm text-red-500 cursor-pointer">
+                <td
+                  onClick={handleDelete}
+                  className="p-3 delete text-sm text-red-500 cursor-pointer"
+                >
                   Delete
                 </td>
               </tr>
@@ -198,41 +216,4 @@ const Board: React.FC = () => {
   );
 };
 
-export default Board;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Dashboard;

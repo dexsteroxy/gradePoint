@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import soma from "../assets/edit.png";
@@ -6,17 +5,25 @@ import Image from "next/image";
 import MagicButton from "./ui/MagicButton";
 import { FaLocationArrow } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import Link from "next/link";
 import { RootState } from "@/redux/store";
 import { useFormContext } from "./FormContext";
 import { setGradePointAndDetails, clearCalculation } from '@/redux/slices/calculationSlice';
 import { clearUser } from '@/redux/slices/authSlice';
 
+interface CalculationDetail {
+  code: string;
+  unit: string;
+  grade: string;
+  // Add other fields if there are any
+}
+
 const Dashboard: React.FC = () => {
   const [showDetails, setShowDetails] = useState(false);
+  
   const { gradePoint, calculationDetails } = useSelector(
     (state: RootState) => state.calculation
   );
+  
   const user = useSelector((state: RootState) => state.auth.user);
   const { formData, saveFormData } = useFormContext();
   const dispatch = useDispatch();
@@ -164,7 +171,7 @@ const Dashboard: React.FC = () => {
                       Calculation Details
                     </h2>
                     <div className=" grid sm:grid-cols-1 md:grid-cols-2 bg-gray-700 p-4 gap-4 md:gap-6 lg:grid-cols-3">
-                      {calculationDetails.map((detail, index) => (
+                      {calculationDetails.map((detail: CalculationDetail, index: number) => (
                         <div
                           key={index}
                           className=" border-b-[1px] md:border-b-[0] border-white-100"
@@ -217,13 +224,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-
-
-
-
-
-
-
-
-
-

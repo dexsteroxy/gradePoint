@@ -50,7 +50,7 @@ const Hero = () => {
 
 
 
-          <a href="/result">
+          <a href="/result" className=" w-full mt-6 md:w-fit px-8 md:px-0 md:mt-0">
             <MagicButton
               title="Track Your Result"
               icon={<FaLocationArrow />}

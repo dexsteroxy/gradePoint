@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Navbar from "@/components/Navbar";
@@ -285,4 +284,5 @@ const Result: React.FC = () => {
 };
 
 export default Result;
+
 

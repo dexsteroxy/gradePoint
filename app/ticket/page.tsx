@@ -95,7 +95,7 @@ const Ticket = () => {
             </div>
             {/* GridGlobe will be here */}
             <div className="flex-shrink-0 bg-black-100 ">
-              <GridGlobe />
+              {/* <GridGlobe /> */}
             </div>
           </div>
         </div>

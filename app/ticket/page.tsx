@@ -19,10 +19,10 @@ const Ticket = () => {
           About this <span className="text-purple">Site</span>
         </h1>
         <p className="mt-6 beans md:mt-12  z-50 p-2 leading-8 md:px-4 text-gray-200 md:text-center font-medium md:max-w-[200x]">
-          "The <span className="text-purple">Result (GP)</span> Tracker offers a
+          The <span className="text-purple">Result (GP)</span> Tracker offers a
           comprehensive solution for efficient result tracking. Simply provide
           your data, and our system will handle the rest, ensuring
-          <br /> accurate and reliable monitoring of your academic performance."
+          <br /> accurate and reliable monitoring of your academic performance.
         </p>
 
         <div className="mt-12 z-30">

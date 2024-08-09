@@ -7,44 +7,26 @@
 // import { useSelector, useDispatch } from "react-redux";
 // import { RootState } from "@/redux/store";
 // import { useFormContext } from "./FormContext";
-// import { setGradePointAndDetails, clearCalculation } from '@/redux/slices/calculationSlice';
-// import { clearUser } from '@/redux/slices/authSlice';
-
-// interface CalculationDetail {
-//   code: string;
-//   unit: string;
-//   grade: string;
-//   // Add other fields if there are any
-// }
+// import { setGradePointAndDetails, clearCalculation, deleteCalculationDetail } from '@/redux/slices/calculationSlice';
 
 // const Dashboard: React.FC = () => {
 //   const [showDetails, setShowDetails] = useState(false);
-  
-//   const { gradePoint, calculationDetails } = useSelector(
-//     (state: RootState) => state.calculation
-//   );
-  
+//   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+//   const { formData, removeFormData } = useFormContext();
+//   const { gradePoints, calculationDetails } = useSelector((state: RootState) => state.calculation);
 //   const user = useSelector((state: RootState) => state.auth.user);
-//   const { formData, saveFormData } = useFormContext();
 //   const dispatch = useDispatch();
 
-//   const handleDelete = () => {
-//     // Clear form data
-//     saveFormData({ level: '', semester: '', year: '' });
-    
-//     // Clear grade point and calculation details from Redux state
-//     dispatch(clearCalculation());
-
-//     // Clear user from Redux state (if needed)
-//     // dispatch(clearUser());
-
-//     // Clear formData from localStorage
-//     localStorage.removeItem('formData');
+//   const handleDelete = (index: number) => {
+//     // Remove from formData
+//     removeFormData(index);
+//     // Remove from Redux state
+//     dispatch(deleteCalculationDetail(index));
 //   };
 
 //   return (
 //     <div className="pt-28">
-//       {/* parent */}
 //       <div className="flex flex-col md:flex-row p-6 gap-9">
 //         <div className="md:w-[30%] flex-col px-6 md:px-0 h-72 bg-black-200 shadow-sm shadow-white-100 rounded-md flex items-center justify-center">
 //           <Image
@@ -105,7 +87,7 @@
 //         )}
 
 //         <div className="flex mx-6 items-center justify-center mt-12">
-//           <table className="w-full z-30 border-r-[1px] border-l-[1px] border-gray-500">
+//           <table className="w-full z-30 mb-4 border-r-[1px] border-l-[1px] border-gray-500">
 //             <thead className="bg-black-200 border-b-[1px] border-gray-500">
 //               <tr>
 //                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
@@ -129,95 +111,88 @@
 //               </tr>
 //             </thead>
 //             <tbody className="relative">
-//               <tr className="border-b-[1px] border-gray-500">
-//                 <td className="p-3 level text-sm text-white-100">
-//                   {formData.level} Level
-//                 </td>
-//                 <td className="p-3 semester text-sm text-white-100">
-//                   {formData.semester} Semester
-//                 </td>
-//                 <td className="p-3 grade text-sm text-white-100">
-//                   {gradePoint} (GP)
-//                 </td>
-
-//                 <td
-//                   onClick={() => setShowDetails(true)}
-//                   className="p-3 text-sm text-purple cursor-pointer"
-//                 >
-//                   View
-//                 </td>
-
-//                 <td className="p-3 date text-sm text-white-100">
-//                   {formData.year}
-//                 </td>
-//                 <td
-//                   onClick={handleDelete}
-//                   className="p-3 delete text-sm text-red-500 cursor-pointer"
-//                 >
-//                   Delete
-//                 </td>
-//               </tr>
-
-//               {showDetails && (
-//                 <div className="fixed inset-0 bg-black-500 bg-opacity-75 px-4 md:px-0 backdrop-blur-sm flex justify-center items-center z-50">
-//                   <div className=" bg-white-200 rounded-lg shadow-lg max-w-4xl w-full mx-4 md:mx-8  md:p-6 p-4 relative">
-//                     <span
-//                       className="absolute top-4 bg-black-200 shadow-md rounded-full hover:text-3xl duration-200 transition items-center px-2 right-4 text-2xl text-purple cursor-pointer"
-//                       onClick={() => setShowDetails(false)}
-//                     >
-//                       &times;
-//                     </span>
-//                     <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
-//                       Calculation Details
-//                     </h2>
-//                     <div className=" grid sm:grid-cols-1 md:grid-cols-2 bg-gray-700 p-4 gap-4 md:gap-6 lg:grid-cols-3">
-//                       {calculationDetails.map((detail: CalculationDetail, index: number) => (
-//                         <div
-//                           key={index}
-//                           className=" border-b-[1px] md:border-b-[0] border-white-100"
-//                         >
-//                           <p className="text-sm text-gray-300">
-//                             <span className=" font-semibold">
-//                               Course Code:
-//                             </span>{" "}
-//                            <span className="font-semibold text-purple"> {detail.code}</span>
-//                           </p>
-//                           <p className="text-sm text-gray-300">
-//                             <span className="font-semibold ">
-//                               Course Units:
-//                             </span>{" "}
-//                             <span className="font-semibold text-purple">{detail.unit}</span>
-//                           </p>
-//                           <p className="text-sm text-gray-300">
-//                             <span className="font-semibold">
-//                               Grade:
-//                             </span>
-//                            <span className="font-semibold text-purple"> {detail.grade}</span>
-//                           </p>
-//                           {/* <p className="text-sm text-gray-300">
-//                             <span className="font-semibold text-purple">
-//                               Grade Points:
-//                             </span>{" "}
-//                             {detail.gradePoints}
-//                           </p> */}
-//                         </div>
-//                       ))}
-//                     </div>
-//                   </div>
-//                 </div>
-//               )}
+//               {Array.isArray(formData) && formData.map((data, index) => (
+//                 <tr key={index} className="border-b-[1px] border-gray-500">
+//                   <td className="p-3 level text-sm text-white-100">
+//                     {data.level} Level
+//                   </td>
+//                   <td className="p-3 semester text-sm text-white-100">
+//                     {data.semester} Semester
+//                   </td>
+//                   <td className="p-3 grade text-sm text-white-100">
+//                     {gradePoints[index] || 'No Grade Point'} (GP)
+//                   </td>
+//                   <td
+//                     onClick={() => { setSelectedIndex(index); setShowDetails(true); }}
+//                     className="p-3 text-sm text-purple cursor-pointer"
+//                   >
+//                     View
+//                   </td>
+//                   <td className="p-3 date text-sm text-white-100">
+//                     {data.year}
+//                   </td>
+//                   <td
+//                     onClick={() => handleDelete(index)}
+//                     className="p-3 delete text-sm text-red-500 cursor-pointer"
+//                   >
+//                     Delete
+//                   </td>
+//                 </tr>
+//               ))}
 //             </tbody>
 //           </table>
 //         </div>
-//         <div className="flex items-center mx-6 justify-center pb-12 mt-8 z-30">
-//           <p className="md:text-sm text-xs z-30 font-semibold tracking-wide text-white-100">
-//             Welcome to result management dashboard{" "}
-//             <a className="text-purple underline" href="/">
-//               Click Here
-//             </a>{" "}
-//             to start tracking your results
-//           </p>
-//         </div>
+//         {showDetails && selectedIndex !== null && (
+//           <div className="fixed inset-0 bg-black-500 bg-opacity-75 px-4 md:px-0 backdrop-blur-sm flex justify-center items-center z-50">
+//             <div className=" bg-white-200 rounded-lg shadow-lg max-w-4xl w-full mx-4 md:mx-8  md:p-6 p-4 relative">
+//               <span
+//                 className="absolute top-4 bg-black-200 shadow-md rounded-full hover:text-3xl duration-200 transition items-center px-2 right-4 text-2xl font-bold cursor-pointer"
+//                 onClick={() => setShowDetails(false)}
+//               >
+//                 &times;
+//               </span>
+//               <h2 className="font-bold text-lg md:text-xl mb-6 text-center text-black-100">
+//                 Grade Point Calculation Details
+//               </h2>
+//               <div className="overflow-x-auto">
+//                 <table className="w-full z-30 border-r-[1px] border-l-[1px] border-gray-500">
+//                   <thead className="bg-black-200 border-b-[1px] border-gray-500">
+//                     <tr>
+//                       <th className="p-3 text-sm font-semibold tracking-wide text-left">
+//                         Code
+//                       </th>
+//                       <th className="p-3 text-sm font-semibold tracking-wide text-left">
+//                         Unit
+//                       </th>
+//                       <th className="p-3 text-sm font-semibold tracking-wide text-left">
+//                         Grade
+//                       </th>
+//                     </tr>
+//                   </thead>
+//                   <tbody>
+//                     {calculationDetails.map((detail, idx) => (
+//                       <tr key={idx} className="border-b-[1px] border-gray-500">
+//                         <td className="p-3 text-sm text-black-100">{detail.code}</td>
+//                         <td className="p-3 text-sm text-black-100">{detail.unit}</td>
+//                         <td className="p-3 text-sm text-black-100">{detail.grade}</td>
+//                       </tr>
+//                     ))}
+//                   </tbody>
+//                 </table>
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+
+//       <div className="flex items-center mx-6 justify-center pb-3 mt-3 z-30">
+//         <p className="md:text-sm text-xs z-30 font-semibold tracking-wide text-white-100">
+//           Welcome to result management dashboard{" "}
+//           <a className="text-purple underline" href="/result">
+//             Click Here
+//           </a>{" "}
+//           to start tracking your results
+//         </p>
 //       </div>
 //     </div>
 //   );
@@ -229,11 +204,15 @@
 
 
 
-//trying one
+
+
+
+
 
 
 //do not touch
-"use client";
+
+ "use client";
 import React, { useState } from "react";
 import soma from "../assets/edit.png";
 import Image from "next/image";
@@ -253,16 +232,23 @@ interface CalculationDetail {
 
 const Dashboard: React.FC = () => {
   const [showDetails, setShowDetails] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedDetails, setSelectedDetails] = useState<CalculationDetail | null>(null);
+  const [selectedGradePoint, setSelectedGradePoint] = useState<string | null>(null);
 
   const { formData, removeFormData } = useFormContext();
-  const { gradePoint, calculationDetails } = useSelector((state: RootState) => state.calculation);
+  const { gradePoints, calculationDetails } = useSelector((state: RootState) => state.calculation);
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
 
   const handleDelete = (index: number) => {
     removeFormData(index);
     dispatch(clearCalculation());
+  };
+
+  const handleView = (index: number) => {
+    setSelectedDetails(calculationDetails[index]);
+    setSelectedGradePoint(gradePoints[index]);
+    setShowDetails(true);
   };
 
   return (
@@ -360,10 +346,10 @@ const Dashboard: React.FC = () => {
                     {data.semester} Semester
                   </td>
                   <td className="p-3 grade text-sm text-white-100">
-                    {gradePoint} (GP)
+                    {gradePoints[index] || 'N/A'} (GP)
                   </td>
                   <td
-                    onClick={() => { setSelectedIndex(index); setShowDetails(true); }}
+                    onClick={() => handleView(index)}
                     className="p-3 text-sm text-purple cursor-pointer"
                   >
                     View
@@ -382,9 +368,9 @@ const Dashboard: React.FC = () => {
             </tbody>
           </table>
         </div>
-        {showDetails && selectedIndex !== null && (
+        {showDetails && selectedDetails && (
           <div className="fixed inset-0 bg-black-500 bg-opacity-75 px-4 md:px-0 backdrop-blur-sm flex justify-center items-center z-50">
-            <div className=" bg-white-200 rounded-lg shadow-lg max-w-4xl w-full mx-4 md:mx-8  md:p-6 p-4 relative">
+            <div className="bg-white-200 rounded-lg shadow-lg max-w-4xl w-full mx-4 md:mx-8 md:p-6 p-4 relative">
               <span
                 className="absolute top-4 bg-black-200 shadow-md rounded-full hover:text-3xl duration-200 transition items-center px-2 right-4 text-2xl font-bold cursor-pointer"
                 onClick={() => setShowDetails(false)}
@@ -410,13 +396,15 @@ const Dashboard: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {calculationDetails.map((detail, idx) => (
-                      <tr key={idx} className="border-b-[1px] border-gray-500">
-                        <td className="p-3 text-sm text-black-100">{detail.code}</td>
-                        <td className="p-3 text-sm text-black-100">{detail.unit}</td>
-                        <td className="p-3 text-sm text-black-100">{detail.grade}</td>
+                    {selectedDetails ? (
+                      <tr className="border-b-[1px] border-gray-500">
+                        <td className="p-3 1  text-sm text-black-100">{selectedDetails.code}</td>
+                        <td className="p-3 2 text-sm text-black-100">{selectedDetails.unit}</td>
+                        <td className="p-3 3 text-sm text-black-100">{selectedDetails.grade}</td>
                       </tr>
-                    ))}
+                    ) : (
+                      <tr><td colSpan={3} className="p-3 text-center">No Details Available</td></tr>
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -426,20 +414,17 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className="flex items-center mx-6 justify-center pb-3 mt-3 z-30">
-  <p className="md:text-sm text-xs z-30 font-semibold tracking-wide text-white-100">
-    Welcome to result management dashboard{" "}
-    <a className="text-purple underline" href="/result">
-      Click Here
-    </a>{" "}
-    to start tracking your results
-  </p>
-</div>
+        <p className="md:text-sm text-xs z-30 font-semibold tracking-wide text-white-100">
+          Welcome to result management dashboard{" "}
+          <a className="text-purple underline" href="/result">
+            Click Here
+          </a>{" "}
+          to start tracking your results
+        </p>
+      </div>
     </div>
   );
 };
 
 export default Dashboard;
-
-
-
 

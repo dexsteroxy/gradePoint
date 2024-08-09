@@ -292,7 +292,7 @@ export function Login() {
           // Fetch user profile
           const userName = res.user.displayName || "User"; // Use displayName if available
           const department = res.user.email || "Department";
-
+//@ts-ignore
           dispatch(setUser({ userName, department, email: res.user.email })); // Update the Redux store with user data
 
           setTimeout(() => {
@@ -311,7 +311,7 @@ export function Login() {
   };
 
   return (
-    <div className="z-50">
+    <div className="z-10">
       <div className="overflow-clip">
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -388,7 +388,7 @@ export function Login() {
               </p>
             )}
             <p className="font-semibold mt-3 text-center">
-              If you don't have an account kindly{" "}
+              If you dont have an account kindly{" "}
               <Link href={"/form"} className="text-blue-300 underline">
                 Sign-up
               </Link>{" "}

@@ -8,7 +8,7 @@ import Board from '@/components/Dashboard'
 const Dashboard = () => {
   return (
     <div className=' bg-black-100 min-h-screen'>
-      {/* <StarsCanvas /> */}
+      <StarsCanvas />
    <HeaderFor />
      {/* contaner */}
     

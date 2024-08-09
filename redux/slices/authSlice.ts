@@ -4,36 +4,6 @@
 
 
 
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const initialState = {
-//   user: null,
-// };
-
-// const authSlice = createSlice({
-//   name: 'auth',
-//   initialState,
-//   reducers: {
-//     setUser: (state, action) => {
-//       state.user = action.payload;
-//     },
-//     clearUser: (state) => {
-//       state.user = null;
-//     },
-//   },
-// });
-
-// export const { setUser, clearUser } = authSlice.actions;
-
-// export default authSlice.reducer;
-
-
-
-
-
-
-
-
 
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -42,7 +12,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface User {
   userName: string;
   department: string;
-  
+  email: string
   // Add other fields if necessary
 }
 
@@ -74,6 +44,8 @@ const authSlice = createSlice({
 export const { setUser, clearUser } = authSlice.actions;
 
 export default authSlice.reducer;
+
+
 
 
 

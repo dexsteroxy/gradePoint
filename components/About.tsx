@@ -9,8 +9,8 @@ const About = () => {
       <div className=" ">
         <div className=" w-[50% ">
           <p className=" mt-24 font-medium">
-            "You don't have to worry about losing track of your results. We're
-            here to take that worry away."
+            You dont have to worry about losing track of your results. We are
+            here to take that worry away.
           </p>
           <div>
             <span className=" flex flex-col">

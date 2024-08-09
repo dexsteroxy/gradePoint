@@ -64,6 +64,8 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface FormData {
+  calculationDetail: never[];
+  calculationDetails: never[];
   level: string;
   semester: string;
   year: string;

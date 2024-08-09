@@ -15,7 +15,7 @@ const page = () => {
     >
      
        <StarsCanvas />
-     <div className="max-w-7xl w-full z-50">
+     <div className="max-w-7xl w-full z-20">
   
      <Login />
      </div>

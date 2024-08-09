@@ -95,7 +95,7 @@ export const InfiniteMovingCards = ({
         {/* 1 */}
         <li
           //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-          className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
+          className="w-[90vw] max-w-full relative rounded-2xl border 
              flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
           style={{
             //   background:
@@ -115,10 +115,10 @@ export const InfiniteMovingCards = ({
             ></div>
             {/* change text color, text-lg */}
             <span className="relative z-20 text-sm md:text-lg leading-[1.6] text-white font-normal">
-              What a fantastic app this is! I am genuinely impressed by the
-              exceptional job you have done. Keep up the great work, my dear. I
+              What a fantastic app this is I am genuinely impressed by the
+              exceptional job you have done. Keep up the great work, my dear I
               really do love it and appreciate all the effort and creativity
-              that went into its development thanks{" "}
+              that went into its development thanks
               <span className=" text-purple"> @Amadi Sixtus Tochukwu.</span>
             </span>
             <div className="relative z-20 mt-6 flex flex-row items-center">
@@ -137,7 +137,7 @@ export const InfiniteMovingCards = ({
                 </span>
                 {/* change text color */}
                 <span className=" text-sm leading-[1.6] text-white-200 font-normal">
-                  Department of{" "}
+                  Department of
                   <span className=" text-purple">Nutrition and dietetics</span>
                 </span>
               </span>
@@ -149,7 +149,7 @@ export const InfiniteMovingCards = ({
 
         <li
           //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-          className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
+          className="w-[90vw] max-w-full relative rounded-2xl border 
              flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
           style={{
             //   background:
@@ -192,7 +192,7 @@ export const InfiniteMovingCards = ({
                 </span>
                 {/* change text color */}
                 <span className=" text-sm leading-[1.6] text-white-200 font-normal">
-                  Department of{" "}
+                  Department of
                   <span className=" text-purple">
                     History and international studies
                   </span>
@@ -205,7 +205,7 @@ export const InfiniteMovingCards = ({
         {/* 3 */}
         <li
           //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-          className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
+          className="w-[90vw] max-w-full relative rounded-2xl border 
              flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
           style={{
             //   background:
@@ -260,7 +260,7 @@ export const InfiniteMovingCards = ({
 
         <li
           //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-          className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
+          className="w-[90vw] max-w-full relative rounded-2xl border 
              flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
           style={{
             //   background:
@@ -283,7 +283,7 @@ export const InfiniteMovingCards = ({
               What amazes me about this app is that after calculating your
               results, it shows you the detailed breakdown of your calculations.
               Additionally, you can store your results in your own personal
-              dashboard. This is truly amazing. Thank you for this,{" "}
+              dashboard. This is truly amazing. Thank you for this,
               <span className=" text-purple"> @Amadi Sixtus Tochukwu!</span>
             </span>
             <div className="relative z-20 mt-6 flex flex-row items-center">
@@ -303,7 +303,7 @@ export const InfiniteMovingCards = ({
                 </span>
                 {/* change text color */}
                 <span className="text-sm leading-[1.6] text-white-200 font-normal">
-                  Department of{" "}
+                  Department of
                   <span className=" text-purple">computer science</span>
                 </span>
               </span>
@@ -315,7 +315,7 @@ export const InfiniteMovingCards = ({
 
         <li
           //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-          className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
+          className="w-[90vw] max-w-full relative rounded-2xl border 
              flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
           style={{
             //   background:
@@ -336,8 +336,8 @@ export const InfiniteMovingCards = ({
             {/* change text color, text-lg */}
             <span className="relative z-20 text-sm md:text-lg leading-[1.6] text-white font-normal">
               I really love this app, especially the beautiful user interface (UI).
-              Whenever I use this app, I feel like I'm flying in space to meet God. I truly
-              love its design and especially it's functionalities.
+              Whenever I use this app, I feel like i am flying in space to meet God. I truly
+              love its design and especially it functionalities.
             </span>
             <div className="relative z-20 mt-6 flex flex-row items-center">
               {/* add this div for the profile img */}
@@ -367,7 +367,7 @@ export const InfiniteMovingCards = ({
 
         <li
           //   change md:w-[450px] to md:w-[60vw] , px-8 py-6 to p-16, border-slate-700 to border-slate-800
-          className="w-[90vw] max-w-full relative rounded-2xl border border-b-0
+          className="w-[90vw] max-w-full relative rounded-2xl border 
              flex-shrink-0 border-slate-800 p-5 md:p-16 md:w-[60vw]"
           style={{
             //   background:

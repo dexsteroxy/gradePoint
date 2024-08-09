@@ -9,7 +9,8 @@ const Dashboard = () => {
   return (
     <div className=' bg-black-100 min-h-screen'>
       <StarsCanvas />
-   <HeaderFor />
+   {/* <HeaderFor /> */}
+   <Navbar />
      {/* contaner */}
     
      <Board />

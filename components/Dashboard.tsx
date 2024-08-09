@@ -312,7 +312,7 @@ const Dashboard: React.FC = () => {
           <p className="md:hidden">Loading...</p>
         )}
 
-        <div className="flex mx-6 items-center justify-center mt-12">
+        <div className="flex mx-2 overflow-x-auto items-center justify-center mt-12">
           <table className="w-full z-30 mb-4 border-r-[1px] border-l-[1px] border-gray-500">
             <thead className="bg-black-200 border-b-[1px] border-gray-500">
               <tr>
@@ -323,7 +323,7 @@ const Dashboard: React.FC = () => {
                   Semester
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
-                  Grade Point (GP)
+                  <span className=" hidden md:block">Grade Point (GP)</span> <span className=" md:hidden block">(GP)</span>
                 </th>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
                   View
@@ -380,7 +380,7 @@ const Dashboard: React.FC = () => {
               <h2 className="font-bold text-lg md:text-xl mb-6 text-center text-black-100">
                 Grade Point Calculation Details
               </h2>
-              <div className="overflow-x-auto">
+              <div className=" w-full overflow-x-auto">
                 <table className="w-full z-30 border-r-[1px] border-l-[1px] border-gray-500">
                   <thead className="bg-black-200 border-b-[1px] border-gray-500">
                     <tr>
@@ -407,6 +407,10 @@ const Dashboard: React.FC = () => {
                     )}
                   </tbody>
                 </table>
+
+
+
+
               </div>
             </div>
           </div>

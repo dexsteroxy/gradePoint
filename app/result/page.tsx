@@ -130,7 +130,7 @@ const Result: React.FC = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="mb-4 text-black-100 animate-pulse text-center font-bold bg-[#35a68d] text-xl p-3 rounded-md md:text-4xl"
+                className="mb-4 text-black-100  text-center font-bold bg-[#35a68d] text-xl p-3 rounded-md md:text-4xl"
               >
                 Your Grade Point is: {gradePoint}
               </motion.div>

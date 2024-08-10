@@ -312,9 +312,10 @@ const Dashboard: React.FC = () => {
           <p className="md:hidden">Loading...</p>
         )}
 
-        <div className="flex mx-2 overflow-x-auto items-center justify-center mt-12">
-          <table className="w-full z-30 mb-4 border-r-[1px] border-l-[1px] border-gray-500">
-            <thead className="bg-black-200 border-b-[1px] border-gray-500">
+       <div className="overflow-x-auto w-full">
+       <div className="fle mx-2  overflow-x-auto items-cente justify-cente mt-12">
+          <table className=" z-30 w-full overflow-x-auto  mb-4 border-r-[1px] border-l-[1px] border-gray-500">
+            <thead className="bg-black-200 overflow-x-auto border-b-[1px] border-gray-500">
               <tr>
                 <th className="p-3 text-sm font-semibold tracking-wide text-left">
                   Level
@@ -368,6 +369,7 @@ const Dashboard: React.FC = () => {
             </tbody>
           </table>
         </div>
+       </div>
         {showDetails && selectedDetails && (
           <div className="fixed inset-0 bg-black-500 bg-opacity-75 px-4 md:px-0 backdrop-blur-sm flex justify-center items-center z-50">
             <div className="bg-white-200 rounded-lg shadow-lg max-w-4xl w-full mx-4 md:mx-8 md:p-6 p-4 relative">

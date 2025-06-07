@@ -1,24 +1,10 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
-
-
-// export default nextConfig;
-
-
-
-
-
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
-  },
-  // other configurations...
-}
+  /* config options here */
+   /* config options here */
+   output: 'export', // Enables static site output
+   images: {
+     unoptimized: true, // Required for static exports
+   },
+};
 
-export default nextConfig;
+export default nextConfig;

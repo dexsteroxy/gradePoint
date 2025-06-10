@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import StarsCanvas from "@/components/ui/StarBackground"; // Ensure you have this component
 import React, { useState } from "react";
-import GridGlobe from "@/components/ui/GridGlobe";
+
 import { FaUnlockAlt } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 const Ticket = () => {

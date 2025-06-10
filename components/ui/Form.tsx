@@ -4,7 +4,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { Label } from "./Label";
 import { cn } from "@/utils/cn";
-import { IconBrandGoogle } from "@tabler/icons-react";
+
 import { Spotlight } from "./Spotlight";
 import { LuLoader } from "react-icons/lu";
 import Link from "next/link";

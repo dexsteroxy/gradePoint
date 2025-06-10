@@ -1,6 +1,5 @@
 import React from "react";
-import { IoBagCheck } from "react-icons/io5";
-import image1 from "../assets/exp1.svg";
+
 
 const About = () => {
   return (

@@ -1,4 +1,4 @@
-import HeaderFor from '@/components/HeaderFor'
+
 import Navbar from '@/components/Navbar'
 import StarsCanvas from '@/components/ui/StarBackground'
 import React from 'react'

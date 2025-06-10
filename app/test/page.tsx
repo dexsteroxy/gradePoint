@@ -25,7 +25,12 @@ const Testimonials: React.FC = () => {
             
             <InfiniteMovingCards
             //  {/* @ts-ignore*/}
-              items={testimonials} // Ensure this matches the type expected
+              items={testimonials.map(({ quote, name, title, image1, image2, image3, image4 }) => ({
+                quote,
+                name,
+                title,
+                image: image1 || image2 || image3 || image4
+              }))} // Ensure this matches the type expected
               direction="right"
               speed="slow"
             />
